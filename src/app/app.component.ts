@@ -9,5 +9,5 @@ import { Component } from '@angular/core';
     </div>`
 })
 export class AppComponent {
-    title: string = 'We love beer';
+    title: string = 'Nuevo proyecto';
 }
