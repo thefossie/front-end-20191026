@@ -1,0 +1,11 @@
+<div class="row mb-4">
+    <div class="col-sm-12 col-md-6 mx-auto">
+        <input id="search" type="text" class="form-control" placeholder="Press 'enter' to seach..." autofocus [(ngModel)]="filterBy"/>
+        <!--si se agrega un ngIf al final de la siguiene liga, se unen y semuestra si hay o no texto-->
+        <small id="passwordHelpBlock" class="form-text text-muted" *ngIf="filterBy">
+            Filter by "{{filterBy | uppercase}}"
+          </small>
+          <!--en la anterior {{filterBy | uppercase}} se usa
+        una tuberia para dar formato de mayusculas-->
+    </div>
+</div>

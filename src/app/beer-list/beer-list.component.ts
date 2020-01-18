@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import { Beer } from '../Beer';
 
 @Component ({
     selector: 'beer-list',
@@ -7,7 +8,15 @@ import {Component} from '@angular/core';
 })
 
 export class  BeerListComponent {
-    beers: any[] = [
+
+    //@Input('filterByOnBeerList') filterBy: string;
+
+    private _filterBy: string;
+
+    searchResults: Array<Beer>;
+
+
+    beers: Beer[] = [
         {
             "img": "https://images.punkapi.com/v2/111.png",
             "title": "Vagabond Pilsner",
@@ -32,5 +41,28 @@ export class  BeerListComponent {
             "text": "Our Unleash the Yeast series was an epic experiment into the differences in aroma and flavour provided by switching up your yeast. We brewed up a wort with a light caramel note and some toasty biscuit flavour, and hopped it with Amarillo and Centennial for a citrusy bitterness. Everything else is down to the yeast. Bavarian Weizen yeast adds traditional weissbier notes of banana and clove.",
             "price": 2.4
         },
-    ]
+    ];
+
+    constructor(){
+        this.searchResults= this.beers;
+    }
+
+    public get filterBy(): string {
+        return this._filterBy;
+    }
+
+    @Input( 'filterByOnBeerList')
+    public set filterBy(value: string) {
+        this._filterBy = value;
+        console.log( `Recibiendo en BeerListComponent '${this.filterBy}'...`)
+
+        this.searchResults = this.filterBy? this.filterBeers(this.filterBy) : this.beers ;
+    }
+
+    filterBeers( filterPattern: string) : Beer[] {
+        filterPattern = filterPattern.toLocaleLowerCase();
+        return this.beers.filter( (beer: Beer ) =>
+            beer.title.toLocaleLowerCase().indexOf(filterPattern) !== -1
+        );
+    }
 }

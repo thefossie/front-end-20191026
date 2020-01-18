@@ -1,11 +1,17 @@
     <!--aqui se agrega *ngIf como propiedad boleana del component.ts-->
-    <div class="row" *ngIf="isActive">
+    <div class="row mb-4" *ngIf="isActive">
         <div class="col-sm-12 col-md-6 mx-auto">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="font-weight-normal text-center">Our Favorite Beer Today</h4>
+                    <h4 class="font-weight-normal">
+                        Our Favorite Beer Today
+                        <button type="button" class="btn btn-link float-right" (click)="toggleImage($event)">Hide</button>
+                    </h4>
                 </div>
-                <div class="card-body">
+                <!--en esta linea se agrega *ngIf
+                para hacer el cambio de visible a invisible
+            se ayuda de las indicaciones en beer.ts-->
+                <div class="card-body" *ngIf="togglePromotion">
                     <div class="row">
                         <div class="col-4 text-center">
                             <!--<img class="fav-beer-image" src="https://images.punkapi.com/v2/169.png"/>-->

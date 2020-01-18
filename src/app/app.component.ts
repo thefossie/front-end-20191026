@@ -7,11 +7,19 @@ import { Component } from '@angular/core';
         <h1>{{ title }}</h1>
         <p class="lead">Este es un proyecto enlazado a mi git</p>
     </div>
+    <beer-search (filterEvent)="onFilterEvent($event)"></beer-search>
     <!--esta linea es para agregar el nuevo componente-->
     <fav-beer></fav-beer>
-    <beer-list></beer-list>`
+    <beer-list [filterByOnBeerList]="filterByOnApp"></beer-list>`
     
 })
 export class AppComponent {
     title: string = 'Nuevo proyecto';
+
+    filterByOnApp: string;
+
+    onFilterEvent( filterByFromBeerSearch: string ){
+        console.log( `Recibiendo '${ filterByFromBeerSearch }'...` );
+        this.filterByOnApp = filterByFromBeerSearch;
+    }
 }

@@ -11,4 +11,13 @@ export class FavBeerComponent {
     FavBeerImg: string = "https://images.punkapi.com/v2/169.png";
     imgHeight: number = 398;
     imgWidth: number = 102;
+
+    togglePromotion: boolean = true;
+    toggleImage( event ){
+        //console.log( event );
+        //esta linea hace el cambio del valor de togglePromotion con cada click
+        this.togglePromotion = !this.togglePromotion;
+    }
+
 }
+
