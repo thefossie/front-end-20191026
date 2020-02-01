@@ -40,11 +40,8 @@ export class BeerService {
         ];
     }
 
-    //import { Observable, throwError } from 'rxjs';
-    //import { catchError } from 'rxjs/operators';
-
     find(): Observable<Beer[]> {
-        return this.http.get<Beer[]>( "https://api.punkapi.com/v2/beers/rando" )
+        return this.http.get<Beer[]>( "https://api.punkapi.com/v2/beers/random" )
             .pipe( catchError( this.handleError ) );
     }
 
