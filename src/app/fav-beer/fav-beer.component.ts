@@ -1,23 +1,38 @@
-import {Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Beer } from '../beer';
+import { BeerService } from '../beer.service';
 
-@Component ({
+@Component({
     selector: 'fav-beer',
-    templateUrl: './fav-beer.component.html',
     styleUrls: ['./fav-beer.component.css'],
+    templateUrl: './fav-beer.component.html'
 })
+export class FavBeerComponent implements OnInit {
 
-export class FavBeerComponent {
     isActive: boolean = true;
-    FavBeerImg: string = "https://images.punkapi.com/v2/169.png";
+
+    favBeerImg: string = "https://images.punkapi.com/v2/179.png";
     imgHeight: number = 398;
     imgWidth: number = 102;
 
     togglePromotion: boolean = true;
-    toggleImage( event ){
+
+    favBeer: Beer;
+
+    constructor( private beerService: BeerService ){}
+
+    ngOnInit(): void {
+        this.beerService.find().subscribe({
+            next: beers => {
+                this.favBeer = beers[0];
+                console.log( this.favBeer );
+            },
+            error: message => alert( message )
+        });
+    }
+    
+    toggleImage( event ): void {
         //console.log( event );
-        //esta linea hace el cambio del valor de togglePromotion con cada click
         this.togglePromotion = !this.togglePromotion;
     }
-
 }
-
